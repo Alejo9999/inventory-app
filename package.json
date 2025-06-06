@@ -1,0 +1,39 @@
+{
+  "name": "inventory-app",
+  "version": "1.0.0",
+  "description": "A cross-platform mobile application for managing inventory items.",
+  "main": "src/App.tsx",
+  "scripts": {
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "react": "17.0.2",
+    "react-native": "0.64.2",
+    "react-navigation": "^4.4.4",
+    "react-native-camera": "^3.40.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.4",
+    "eslint": "^7.32.0",
+    "jest": "^27.0.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/inventory-app.git"
+  },
+  "keywords": [
+    "inventory",
+    "barcode",
+    "react-native"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yourusername/inventory-app/issues"
+  },
+  "homepage": "https://github.com/yourusername/inventory-app#readme"
+}
