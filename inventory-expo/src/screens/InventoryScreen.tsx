@@ -2,11 +2,13 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useInventory } from '../context/InventoryContext';
+import { useMockData } from '../mocks/useMockData';
 import ProductList from '../components/ProductList';
 
 const InventoryScreen: React.FC = () => {
     const navigation = useNavigation();
     const { products, removeProduct, updateProduct } = useInventory();
+    const { loadMockData, clearAllData, mockDataCount } = useMockData();
 
     const handleRemoveProduct = (id: string) => {
         Alert.alert(
@@ -44,13 +46,42 @@ const InventoryScreen: React.FC = () => {
                 <View style={styles.emptyContainer}>
                     <Text style={styles.emptyText}>No hay productos en el inventario</Text>
                     <Text style={styles.emptySubtext}>Agrega tu primer producto para comenzar</Text>
+                    
+                    <View style={styles.mockDataButtons}>
+                        <TouchableOpacity
+                            style={styles.mockDataButton}
+                            onPress={loadMockData}
+                        >
+                            <Text style={styles.mockDataButtonText}>
+                                📦 Cargar {mockDataCount} productos de prueba
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             ) : (
-                <ProductList 
-                    products={products} 
-                    onRemove={handleRemoveProduct} 
-                    onUpdate={updateProduct} 
-                />
+                <View style={styles.inventoryContainer}>
+                    <View style={styles.toolsContainer}>
+                        <TouchableOpacity
+                            style={styles.toolButton}
+                            onPress={loadMockData}
+                        >
+                            <Text style={styles.toolButtonText}>📦 + Datos de prueba</Text>
+                        </TouchableOpacity>
+                        
+                        <TouchableOpacity
+                            style={[styles.toolButton, styles.clearButton]}
+                            onPress={clearAllData}
+                        >
+                            <Text style={[styles.toolButtonText, styles.clearButtonText]}>🗑️ Limpiar todo</Text>
+                        </TouchableOpacity>
+                    </View>
+                    
+                    <ProductList 
+                        products={products} 
+                        onDelete={handleRemoveProduct} 
+                        onUpdate={updateProduct} 
+                    />
+                </View>
             )}
         </View>
     );
@@ -106,6 +137,54 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#999',
         textAlign: 'center',
+        marginBottom: 24,
+    },
+    mockDataButtons: {
+        marginTop: 20,
+        width: '100%',
+    },
+    mockDataButton: {
+        backgroundColor: '#4CAF50',
+        paddingHorizontal: 20,
+        paddingVertical: 12,
+        borderRadius: 8,
+        marginBottom: 10,
+    },
+    mockDataButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 16,
+        textAlign: 'center',
+    },
+    inventoryContainer: {
+        flex: 1,
+    },
+    toolsContainer: {
+        flexDirection: 'row',
+        padding: 16,
+        gap: 12,
+        backgroundColor: '#fff',
+        borderBottomWidth: 1,
+        borderBottomColor: '#e0e0e0',
+    },
+    toolButton: {
+        flex: 1,
+        backgroundColor: '#4CAF50',
+        paddingVertical: 10,
+        paddingHorizontal: 12,
+        borderRadius: 6,
+        alignItems: 'center',
+    },
+    clearButton: {
+        backgroundColor: '#f44336',
+    },
+    toolButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 12,
+    },
+    clearButtonText: {
+        color: '#fff',
     },
 });
 

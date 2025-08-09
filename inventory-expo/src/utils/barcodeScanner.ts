@@ -1,28 +1,8 @@
-import { Alert, PermissionsAndroid, Platform } from 'react-native';
+import { Alert } from 'react-native';
 
 export const scanBarcode = async (): Promise<string | null> => {
     try {
-        // Solicitar permisos de cámara
-        if (Platform.OS === 'android') {
-            const granted = await PermissionsAndroid.request(
-                PermissionsAndroid.PERMISSIONS.CAMERA,
-                {
-                    title: 'Permiso de Cámara',
-                    message: 'Esta aplicación necesita acceso a la cámara para escanear códigos de barras.',
-                    buttonNeutral: 'Preguntar después',
-                    buttonNegative: 'Cancelar',
-                    buttonPositive: 'OK',
-                }
-            );
-            
-            if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
-                Alert.alert('Permisos requeridos', 'Se necesita acceso a la cámara para escanear códigos de barras.');
-                return null;
-            }
-        }
-
-        // TODO: Implementar escáner real de códigos de barras
-        // Por ahora, simulamos un escáner para propósitos de desarrollo
+        // Simulador de escáner - no requiere módulos nativos
         return new Promise((resolve) => {
             Alert.prompt(
                 'Simulador de Escáner',

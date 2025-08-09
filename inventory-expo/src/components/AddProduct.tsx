@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet, Text, Alert } from 'react-native';
+import { View, TextInput, TouchableOpacity, StyleSheet, Text, Alert, ScrollView } from 'react-native';
 import { scanBarcode } from '../utils/barcodeScanner';
 
 interface ProductData {
@@ -74,7 +74,7 @@ const AddProduct: React.FC<AddProductProps> = ({ onAddProduct }) => {
     };
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
             <Text style={styles.title}>Agregar Nuevo Producto</Text>
             
             <View style={styles.inputContainer}>
@@ -136,15 +136,18 @@ const AddProduct: React.FC<AddProductProps> = ({ onAddProduct }) => {
             >
                 <Text style={styles.addButtonText}>Agregar Producto</Text>
             </TouchableOpacity>
-        </View>
+        </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
         backgroundColor: '#fff',
+    },
+    scrollContent: {
+        padding: 20,
+        paddingBottom: 40,
     },
     title: {
         fontSize: 24,

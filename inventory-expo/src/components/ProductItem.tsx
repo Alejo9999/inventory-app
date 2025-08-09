@@ -5,10 +5,10 @@ import { Product } from '../types';
 interface ProductItemProps {
   product: Product;
   onUpdate: (id: string, updates: Partial<Product>) => void;
-  onRemove: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
-const ProductItem: React.FC<ProductItemProps> = ({ product, onUpdate, onRemove }) => {
+const ProductItem: React.FC<ProductItemProps> = ({ product, onUpdate, onDelete }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editName, setEditName] = useState(product.name);
   const [editQuantity, setEditQuantity] = useState(product.quantity.toString());
@@ -113,7 +113,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product, onUpdate, onRemove }
         
         <TouchableOpacity
           style={[styles.button, styles.removeButton]}
-          onPress={() => onRemove(product.id)}
+          onPress={() => onDelete(product.id)}
         >
           <Text style={styles.buttonText}>🗑️ Eliminar</Text>
         </TouchableOpacity>

@@ -5,13 +5,13 @@ import { Product } from '../types';
 
 interface ProductListProps {
   products: Product[];
-  onRemove: (id: string) => void;
+  onDelete: (id: string) => void;
   onUpdate: (id: string, updates: Partial<Product>) => void;
 }
 
-const ProductList: React.FC<ProductListProps> = ({ products, onRemove, onUpdate }) => {
+const ProductList: React.FC<ProductListProps> = ({ products, onDelete, onUpdate }) => {
   const renderItem = ({ item }: { item: Product }) => (
-    <ProductItem product={item} onRemove={onRemove} onUpdate={onUpdate} />
+    <ProductItem product={item} onDelete={onDelete} onUpdate={onUpdate} />
   );
 
   const getTotalValue = () => {

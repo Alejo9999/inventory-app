@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { InventoryProvider } from './context/InventoryContext';
-import InventoryScreen from './screens/InventoryScreen';
-import AddProductScreen from './screens/AddProductScreen';
+import { InventoryProvider } from './src/context/InventoryContext';
+import InventoryScreen from './src/screens/InventoryScreen';
+import AddProductScreen from './src/screens/AddProductScreen';
 
 const Stack = createStackNavigator();
 
-const App = () => {
+export default function App() {
   return (
     <InventoryProvider>
       <NavigationContainer>
@@ -37,6 +37,4 @@ const App = () => {
       </NavigationContainer>
     </InventoryProvider>
   );
-};
-
-export default App;
+}
